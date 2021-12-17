@@ -142,10 +142,18 @@ You'll start seeing Snyk doing these to any of the files you declared in your `.
 snyk container monitor <your-image>
 ```
 
-You can also add this to your `.travis.yml`. so let's say I had a container over at Docker entitled `container.tar`, we could add this line in our `script:` hook in our Travis config file:
+You can also add this to your `.travis.yml`, so let's say I had a container over at Docker entitled `container.tar`, we could add this line in our `script:` hook in our Travis config file:
 
 ```yaml
 - snyk container test docker-archive:container.tar
 ```
 
-There you have it, making things secure is always important when it comes to software development, end to end and up and down the stack. You now know how to integrate Snyk with your Travis CI builds, just another presentation of how flexible Travis CI is using integrations. 
+## Conclusion 
+
+Well there you have it, making things secure is always important when it comes to software development, end to end and up and down the stack. You now know how to integrate Snyk with your Travis CI builds, just another presentation of how flexible Travis CI is using integrations. 
+
+Here is my example of the Travis and Snyk integration, click [here](https://github.com/Montana/snyk-palantir-cassandra).
+
+As always rmember if you have any questions, any questions at all, please email me at [montana@travis-ci.org](montana@travis-ci.org).
+
+Happy building! 
