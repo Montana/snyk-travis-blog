@@ -114,7 +114,7 @@ Now let's say you have a Terraform config file, named the classic `main.tf`, and
 provider "local" {
   version = "~> 1.4"
 }
-resource "local_file" "hello snyk, palantir, cassandra and travis" {
+resource "local_file" "hello snyk, montana, palantir, cassandra and travis" {
   content = "Hello, user"
   filename = "foobar.txt"
 }
@@ -125,3 +125,27 @@ Now that we have `main.tf` saved in the directory, just run the following in you
 snyk iac test main.tf
 ```
 
+You should see something that resembles the following: 
+
+<img width="689" alt="terraform" src="https://user-images.githubusercontent.com/20936398/146601912-907bec06-5de1-48fd-9aa7-9a339fe77564.png">
+
+## Travis CI 
+
+Alright, well now that you have a basic understand of what Snyk does and how we are going to integrate it into our Travis project, let's first trigger a build, you'll want to remember those `env vars`, when it starts building, you'll see that Snyk gets pulled via `npm install -g snyk@latest`, then I have it run `snyk -v` which tells you what version of Snyk you're running inside of Travis, then it will start going on ahead with the testing: 
+
+
+<img width="687" alt="tester" src="https://user-images.githubusercontent.com/20936398/146602355-e068d537-255b-419e-af1b-0a4e246f588c.png">
+
+You'll start seeing Snyk doing these to any of the files you declared in your `.travis.yml`, making sure there are close to no vulnerabilities. You can also test containers, so for example you can run in your CLI: 
+
+```bash
+snyk container monitor <your-image>
+```
+
+You can also add this to your `.travis.yml`. so let's say I had a container over at Docker entitled `container.tar`, we could add this line in our `script:` hook in our Travis config file:
+
+```yaml
+- snyk container test docker-archive:container.tar
+```
+
+There you have it, making things secure is always important when it comes to software development, end to end and up and down the stack. You now know how to integrate Snyk with your Travis CI builds, just another presentation of how flexible Travis CI is using integrations. 
